@@ -9,21 +9,19 @@
 /**
  * Description of slider
  *
- * @author Nipuni
+ * @author W j K n``
  */
 class Slider {
 
     public $id;
     public $title;
     public $image_name;
-    public $description;
-    public $url;
-    public $queue;
+    public $sort;
 
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`title`,`image_name`,`description`,`url`,`queue` FROM `slider` WHERE `id`=" . $id;
+            $query = "SELECT `id`,`title`,`image_name`,`sort` FROM `slider` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -32,9 +30,7 @@ class Slider {
             $this->id = $result['id'];
             $this->title = $result['title'];
             $this->image_name = $result['image_name'];
-            $this->description = $result['description'];
-            $this->url = $result['url'];
-            $this->queue = $result['queue'];
+            $this->sort = $result['sort'];
 
             return $this;
         }
@@ -42,12 +38,10 @@ class Slider {
 
     public function create() {
 
-        $query = "INSERT INTO `slider` (`title`,`image_name`,`description`,`url`,`queue`) VALUES  ('"
+        $query = "INSERT INTO `slider` (`title`,`image_name`,`sort`) VALUES  ('"
                 . $this->title . "','"
                 . $this->image_name . "', '"
-                . $this->description . "', '"
-                . $this->url . "', '"
-                . $this->queue . "')";
+                . $this->sort . "')";
 
         $db = new Database();
 
@@ -64,7 +58,7 @@ class Slider {
 
     public function all() {
 
-        $query = "SELECT * FROM `slider` ORDER BY queue ASC";
+        $query = "SELECT * FROM `slider` ORDER BY sort ASC";
         $db = new Database();
         $result = $db->readQuery($query);
         $array_res = array();
@@ -81,9 +75,7 @@ class Slider {
         $query = "UPDATE  `slider` SET "
                 . "`title` ='" . $this->title . "', "
                 . "`image_name` ='" . $this->image_name . "', "
-                . "`description` ='" . $this->description . "', "
-                . "`url` ='" . $this->url . "', "
-                . "`queue` ='" . $this->queue . "' "
+                . "`sort` ='" . $this->sort . "' "
                 . "WHERE `id` = '" . $this->id . "'";
 
         $db = new Database();
@@ -108,7 +100,7 @@ class Slider {
     }
 
     public function arrange($key, $img) {
-        $query = "UPDATE `slider` SET `queue` = '" . $key . "'  WHERE id = '" . $img . "'";
+        $query = "UPDATE `slider` SET `sort` = '" . $key . "'  WHERE id = '" . $img . "'";
         $db = new Database();
         $result = $db->readQuery($query);
         return $result;

@@ -58,22 +58,6 @@ include_once(dirname(__FILE__) . '/auth.php');
                                     </div>
                                 </div>
 
-                                <div class="col-md-12 hidden ">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input type="text" id="url" class="form-control" name="url" required="true" value="1">
-                                            <label class="form-label">URL</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden">
-                                    <label for="description">Description</label>
-                                    <div class="form-line">
-                                        <input type="text" id="description" class="form-control" name="description" value="0">
-                                    </div>
-                                </div>
-
                                 <div class="col-md-12">
                                     <input type="hidden" name="create" value="create" />
                                     <input type="submit" id="create" class="btn btn-primary m-t-15 waves-effect" value="create" />

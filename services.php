@@ -1,3 +1,8 @@
+<?php
+include_once(dirname(__FILE__) . '/class/include.php');
+$SERVICE = new Service(NULL);
+$services = $SERVICE->all();
+?>
 <!doctype html>
 <html>
 
@@ -6,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Services || Clean & Green Polymer</title>
+    <title>Services || Clean & Green Polymers</title>
     <!-- Plugins CSS -->
     <link href="css/plugins.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -80,68 +85,31 @@
     <section class="service-sec inner-content-wrapper">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <!-- Single Service Sec -->
-                    <div class="single-services-sec">
-                        <a href="view-service.php?id=">
-                            <div class="services-icon"> <i class="flaticon-computer"></i> </div>
-                            <div class="single-services-content">
-                                <h5>Computer Repair</h5>
-                                <p>Lorem ipsum dolor sit amet, ipsum consectetur adipisicing elit, sed do eiusmod tempor inc ididunt ut.</p>
+                <?php
+                if (count($services) > 0) {
+                    foreach ($services as $service) {
+                ?>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product Sec -->
+                            <div class="single-blog-post">
+                                <div class="post-image">
+                                    <a href="view-service.php?id=<?= $service['id']; ?>">
+                                        <img src="upload/service/<?= $service['image_name']; ?>" alt="<?= $service['title']; ?>" title="<?= $service['title']; ?>">
+                                    </a>
+                                </div>
+                                <div class="post-content">
+                                    <h3> <a href="view-service.php?id=<?= $service['id']; ?>"><?= $service['title']; ?></a> </h3>
+                                    <p><?= substr($service['description'], 0, 250) . '...'; ?></p>
+                                    <a href="view-service.php?id=<?= $service['id']; ?>" class="btn">Read More</a>
+                                </div>
                             </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <!-- Single Service Sec -->
-                    <div class="single-services-sec">
-                        <div class="services-icon"> <i class="flaticon-mac-mini"></i> </div>
-                        <div class="single-services-content">
-                            <h5>Data Recovery</h5>
-                            <p>Lorem ipsum dolor sit amet, ipsum consectetur adipisicing elit, sed do eiusmod tempor inc ididunt ut.</p>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <!-- Single Service Sec -->
-                    <div class="single-services-sec">
-                        <div class="services-icon"> <i class="flaticon-apple"></i> </div>
-                        <div class="single-services-content">
-                            <h5>Hardware Update</h5>
-                            <p>Lorem ipsum dolor sit amet, ipsum consectetur adipisicing elit, sed do eiusmod tempor inc ididunt ut.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <!-- Single Service Sec -->
-                    <div class="single-services-sec">
-                        <div class="services-icon"> <i class="flaticon-data"></i> </div>
-                        <div class="single-services-content">
-                            <h5>Electronics Repair</h5>
-                            <p>Lorem ipsum dolor sit amet, ipsum consectetur adipisicing elit, sed do eiusmod tempor inc ididunt ut.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <!-- Single Service Sec -->
-                    <div class="single-services-sec">
-                        <div class="services-icon"> <i class="flaticon-technical-support"></i> </div>
-                        <div class="single-services-content">
-                            <h5>Mac Repair</h5>
-                            <p>Lorem ipsum dolor sit amet, ipsum consectetur adipisicing elit, sed do eiusmod tempor inc ididunt ut.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <!-- Single Service Sec -->
-                    <div class="single-services-sec">
-                        <div class="services-icon"> <i class="flaticon-tools"></i> </div>
-                        <div class="single-services-content">
-                            <h5>Quality Support</h5>
-                            <p>Lorem ipsum dolor sit amet, ipsum consectetur adipisicing elit, sed do eiusmod tempor inc ididunt ut.</p>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                    }
+                } else {
+                    echo 'No any services.';
+                }
+                ?>
             </div>
         </div>
     </section>

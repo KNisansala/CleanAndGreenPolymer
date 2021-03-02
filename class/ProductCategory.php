@@ -9,6 +9,7 @@ class ProductCategory
 
     public $id;
     public $name;
+    public $imageName;
     public $sort;
 
     public function __construct($id)
@@ -23,6 +24,7 @@ class ProductCategory
 
             $this->id = $result['id'];
             $this->name = $result['name'];
+            $this->imageName = $result['image_name'];
             $this->sort = $result['sort'];
 
             return $this;
@@ -32,8 +34,9 @@ class ProductCategory
     public function create()
     {
 
-        $query = "INSERT INTO `product_category` (`name`,`sort`) VALUES  ('"
+        $query = "INSERT INTO `product_category` (`name`,`image_name`,`sort`) VALUES  ('"
             . $this->name . "', '"
+            . $this->imageName . "', '"
             . $this->sort . "')";
 
 
@@ -69,7 +72,8 @@ class ProductCategory
     {
 
         $query = "UPDATE  `product_category` SET "
-            . "`name` ='" . $this->name . "' "
+            . "`name` ='" . $this->name . "', "
+            . "`image_name` ='" . $this->imageName . "' "
             . "WHERE `id` = '" . $this->id . "'";
 
         $db = new Database();
@@ -86,6 +90,7 @@ class ProductCategory
     public function delete()
     {
         $this->deleteProducts();
+        unlink(Helper::getSitePath() . "upload/product-category/" . $this->imageName);
         $query = 'DELETE FROM `product_category` WHERE id="' . $this->id . '"';
         $db = new Database();
         return $db->readQuery($query);

@@ -8,15 +8,15 @@
  * */
 class Database {
 
-    // private $host = 'localhost';
-    // private $name = 'exforce.lk';
-    // private $user = 'root';
-    // private $password = '';
+    private $host = 'localhost';
+    private $name = 'clean_and_green_polymer';
+    private $user = 'root';
+    private $password = '';
 
-   private $host = 'localhost';
-   private $name = 'synoteca_exforce.lk';
-   private $user = 'synoteca_main';
-   private $password = '3rTI#)-vDmAKczXQ-J';
+//    private $host = 'localhost';
+//    private $name = 'synoteca_cng';
+//    private $user = 'synoteca_main';
+//    private $password = '3rTI#)-vDmAKczXQ-J';
 
     public function __construct() {
         mysql_connect($this->host, $this->user, $this->password) or die("Invalid host  or user details");

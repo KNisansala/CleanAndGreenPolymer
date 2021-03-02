@@ -1,3 +1,14 @@
+<?php
+include_once(dirname(__FILE__) . '/class/include.php');
+$id = '';
+if (isset($_GET['id'])) {
+  $id = $_GET['id'];
+}
+$SERVICE = new Service($id);
+$SER_PHOTO = new ServicePhoto(NULL);
+$photos = $SER_PHOTO->getServicePhotosByService($id);
+$related_services = $SERVICE->all();
+?>
 <!doctype html>
 <html>
 
@@ -6,7 +17,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title> || Services || Clean & Green Polymer</title>
+  <title><?= $SERVICE->title; ?> || Services || Clean & Green Polymers</title>
   <!-- Plugins CSS -->
   <link href="css/plugins.css" rel="stylesheet">
   <!-- Custom CSS -->
@@ -59,7 +70,7 @@
       <div class="row">
         <div class="col-lg-9 col-md-9">
           <div class="page-title">
-            <h1>Services</h1>
+            <h1><?= $SERVICE->title; ?></h1>
           </div>
         </div>
         <div class="col-lg-3 col-md-3 d-flex justify-content-start justify-content-md-end align-items-center">
@@ -68,7 +79,7 @@
               <ol class="breadcrumb ">
                 <li class="breadcrumb-item"> <a href="./">Home</a> </li>
                 <li class="breadcrumb-item"> <a href="services.php">Services</a> </li>
-                <li class="breadcrumb-item active" aria-current="page">Service Name</li>
+                <li class="breadcrumb-item active" aria-current="page"><?= $SERVICE->title; ?></li>
               </ol>
             </nav>
           </div>
@@ -84,14 +95,21 @@
         <div class="col-lg-4">
           <div class="widget-sidebar">
             <div class="sidebar-widget categories">
-              <h3>All Services</h3>
+              <h3>Related Services</h3>
               <ul>
-                <li><a href="view-service.php">Mobile Reair</a></li>
-                <li><a href="javascript:void(0)">TV Reair</a></li>
-                <li><a href="javascript:void(0)">Computer Reair</a></li>
-                <li><a href="javascript:void(0)">Data Recovery</a></li>
-                <li><a href="javascript:void(0)">Hardware Update</a></li>
-                <li><a href="javascript:void(0)">Electronics Repair</a></li>
+                <?php
+                if (count($related_services) > 1) {
+                  foreach ($related_services as $service) {
+                    if ($service['id'] != $id) {
+                ?>
+                      <li><a href="view-service.php?id=<?= $service['id']; ?>"><?= $service['name']; ?></a></li>
+                <?php
+                    }
+                  }
+                } else {
+                  echo 'No any related services.';
+                }
+                ?>
               </ul>
             </div>
 
@@ -99,11 +117,24 @@
         </div>
         <div class="col-lg-8">
           <div class="services-details-content">
-            <div class="services-details-img mb-30"> <img src="images/services-big.jpg" alt=""> </div>
+            <div class="services-details-img mb-30">
+              <div class="view-photo-slider">
+                <?php
+                if (count($photos) > 0) {
+                  foreach ($photos as $photo) {
+                ?>
+                    <div><img src="upload/service/gallery/<?= $photo['image_name']; ?>" alt=""></div>
+                <?php
+                  }
+                } else {
+                  echo 'No any service photos.';
+                }
+                ?>
+              </div>
+            </div>
             <div class="services-content mb-30">
-              <h3>Computer Repair Services</h3>
-              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet accusam et justo duo dolores et.</p>
-              <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat dolore eu feugiat nulla facilisis at vero</p>
+              <h3><?= $SERVICE->title; ?></h3>
+              <p><?= $SERVICE->description; ?></p>
             </div>
           </div>
         </div>

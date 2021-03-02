@@ -28,14 +28,6 @@ $(document).ready(function () {
                 timer: 1500,
                 showConfirmButton: false
             });
-        } else if ($('#title').val().includes("'")) {
-            swal({
-                title: "Error!",
-                text: "Sorry, Invalid character found ( ' ) in title. Please remove that character.",
-                type: 'error',
-                timer: 3500,
-                showConfirmButton: false
-            });
         } else {
             var formData = new FormData($('#form-data')[0]);
             $.ajax({
@@ -92,14 +84,6 @@ $(document).ready(function () {
                 text: "Please enter  image..!",
                 type: 'error',
                 timer: 1500,
-                showConfirmButton: false
-            });
-        } else if ($('#title').val().includes("'")) {
-            swal({
-                title: "Error!",
-                text: "Sorry, Invalid character found ( ' ) in title. Please remove that character.",
-                type: 'error',
-                timer: 3500,
                 showConfirmButton: false
             });
         } else {
