@@ -1,3 +1,15 @@
+<?php
+include_once(dirname(__FILE__) . '/class/include.php');
+$id = '';
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+}
+$PRODUCT = new Product($id);
+$PRO_PHOTO = new ProductPhoto(NULL);
+$photos = $PRO_PHOTO->getProductPhotosByProduct($id);
+$PRODUCT_CATEGORY = new ProductCategory($PRODUCT->category);
+$related_products = $PRODUCT->getProductsByCategory($PRODUCT->category);
+?>
 <!doctype html>
 <html>
 
@@ -6,9 +18,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title> || Products || Clean & Green Polymer</title>
+    <title><?= $PRODUCT->name; ?> || Products || Clean & Green Polymers</title>
     <!-- Plugins CSS -->
     <link href="css/plugins.css" rel="stylesheet">
+    <link href="css/slick.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- Favicon -->
@@ -59,7 +72,7 @@
             <div class="row">
                 <div class="col-lg-9 col-md-9">
                     <div class="page-title">
-                        <h1>Product Name</h1>
+                        <h1><?= $PRODUCT->name; ?></h1>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 d-flex justify-content-start justify-content-md-end align-items-center">
@@ -67,8 +80,8 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb ">
                                 <li class="breadcrumb-item"> <a href="./">Home</a> </li>
-                                <li class="breadcrumb-item"> <a href="products.php">Products</a> </li>
-                                <li class="breadcrumb-item active" aria-current="page">Product Name</li>
+                                <li class="breadcrumb-item"> <a href="products.php?id=<?= $PRODUCT->category; ?>">Products</a> </li>
+                                <li class="breadcrumb-item active" aria-current="page"><?= $PRODUCT->name; ?></li>
                             </ol>
                         </nav>
                     </div>
@@ -83,19 +96,31 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="blog-details-content">
-                        <div class="blog-details-img"> <img src="images/services-big.jpg" alt=""> </div>
+                        <div class="blog-details-img">
+                            <div class="view-photo-slider">
+                                <?php
+                                if (count($photos) > 0) {
+                                    foreach ($photos as $photo) {
+                                ?>
+                                        <div><img src="upload/product/gallery/<?= $photo['image_name']; ?>" alt=""></div>
+                                <?php
+                                    }
+                                } else {
+                                    echo 'No any product photos.';
+                                }
+                                ?>
+                            </div>
+                        </div>
                         <div class="blog-top-content">
                             <div class="news-content">
                                 <ul class="admin">
-                                    <li> <a href="javascript:void(0)"> <i class="bx bx-user-circle"></i> Les Williams </a> </li>
-                                    <li> <a href="javascript:void(0)"> <i class="bx bx-comment"></i> No comments </a> </li>
-                                    <li class="float"> <i class="bx bx-calendar-alt"></i> August 25, 2020 </li>
+                                    <li> <a href="javascript:void(0)"> <i class="fa fa-list"></i> <?= $PRODUCT_CATEGORY->name; ?> </a> </li>
+                                    <li> <a href="javascript:void(0)"> <i class="bx bx-money"></i> Rs. <?= number_format($PRODUCT->price, 2); ?> </a> </li>
                                 </ul>
-                                <h3>Top 10 Computor Repair Service Providers</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo.</p>
-                                <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas auguae, eu vulputate magna eros eu Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
+                                <h3><?= $PRODUCT->name; ?></h3>
+                                <p><?= $PRODUCT->description; ?></p>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -104,12 +129,19 @@
                         <div class="sidebar-widget categories">
                             <h3>Related Products</h3>
                             <ul>
-                                <li><a href="javascript:void(0)">Mobile Reair</a></li>
-                                <li><a href="javascript:void(0)">TV Reair</a></li>
-                                <li><a href="javascript:void(0)">Computer Reair</a></li>
-                                <li><a href="javascript:void(0)">Data Recovery</a></li>
-                                <li><a href="javascript:void(0)">Hardware Update</a></li>
-                                <li><a href="javascript:void(0)">Electronics Repair</a></li>
+                                <?php
+                                if (count($related_products) > 1) {
+                                    foreach ($related_products as $product) {
+                                        if ($product['id'] != $id) {
+                                ?>
+                                            <li><a href="view-product.php?id=<?= $product['id']; ?>"><?= $product['name']; ?></a></li>
+                                <?php
+                                        }
+                                    }
+                                } else {
+                                    echo 'No any related products.';
+                                }
+                                ?>
                             </ul>
                         </div>
                     </div>

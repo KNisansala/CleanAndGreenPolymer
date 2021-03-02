@@ -258,7 +258,7 @@
                         </li>
                         <li role="seperator" class="divider"></li>
                         <li><a href="edit-profile.php?id=<?php echo $_SESSION['id']; ?>"><i class="material-icons">edit</i>Edit My Profile</a></li>
-                        <li><a href="change-password.php?id=<?php echo $_SESSION['id']; ?>"><i class="material-icons">vpn_key</i>Change Password</a></li> 
+                        <li><a href="change-password.php?id=<?php echo $_SESSION['id']; ?>"><i class="material-icons">vpn_key</i>Change Password</a></li>
                         <li role="seperator" class="divider"></li>
                         <li><a href="post-and-get/log-out.php"><i class="material-icons">input</i>Sign Out</a></li>
                     </ul>
@@ -277,9 +277,9 @@
                     </a>
                 </li>
                 <li class="qqq">
-                    <a href="create-banner.php" class="">
+                    <a href="create-slider.php" class="">
                         <i class="material-icons">chevron_right</i>
-                        <span>Banner</span>
+                        <span>Slider</span>
                     </a>
 
                 </li>
@@ -304,7 +304,7 @@
                         </li>
 
                     </ul>
-                </li> 
+                </li>
                 <li class="qqq">
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">chevron_right</i>
@@ -325,58 +325,6 @@
                         </li>
                         <li>
                             <a href="arrange-comment.php">
-                                <i class="material-icons">compare_arrows</i>
-                                <span>Arrange</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="">
-                    <a href="javascript:void(0);" class="menu-toggle">
-                        <i class="material-icons">chevron_right</i>
-                        <span>Location Category</span>
-                    </a>
-                    <ul class="ml-menu">
-                        <li>
-                            <a href="create-listing-category.php">
-                                <i class="material-icons">add</i>
-                                <span>Add New</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="manage-listing-categories.php">
-                                <i class="material-icons">list</i>
-                                <span>Manage</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="arrange-listing-categories.php">
-                                <i class="material-icons">compare_arrows</i>
-                                <span>Arrange</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="">
-                    <a href="javascript:void(0);" class="menu-toggle">
-                        <i class="material-icons">chevron_right</i>
-                        <span>Blog Category</span>
-                    </a>
-                    <ul class="ml-menu">
-                        <li>
-                            <a href="create-blog-category.php">
-                                <i class="material-icons">add</i>
-                                <span>Add New</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="manage-blog-categories.php">
-                                <i class="material-icons">list</i>
-                                <span>Manage</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="arrange-blog-categories.php">
                                 <i class="material-icons">compare_arrows</i>
                                 <span>Arrange</span>
                             </a>
@@ -412,23 +360,23 @@
                 <li class="">
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">chevron_right</i>
-                        <span>Instructor Category</span>
+                        <span>Service</span>
                     </a>
                     <ul class="ml-menu">
                         <li>
-                            <a href="create-instructor-category.php">
+                            <a href="create-service.php">
                                 <i class="material-icons">add</i>
                                 <span>Add New</span>
                             </a>
                         </li>
                         <li>
-                            <a href="manage-instructor-categories.php">
+                            <a href="manage-services.php">
                                 <i class="material-icons">list</i>
                                 <span>Manage</span>
                             </a>
                         </li>
                         <li>
-                            <a href="arrange-instructor-categories.php">
+                            <a href="arrange-services.php">
                                 <i class="material-icons">compare_arrows</i>
                                 <span>Arrange</span>
                             </a>
@@ -438,49 +386,23 @@
                 <li class="">
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">chevron_right</i>
-                        <span>Patners Category</span>
+                        <span>Gallery</span>
                     </a>
                     <ul class="ml-menu">
                         <li>
-                            <a href="create-partner-category.php">
+                            <a href="manage-gallery-photos.php">
                                 <i class="material-icons">add</i>
                                 <span>Add New</span>
                             </a>
                         </li>
                         <li>
-                            <a href="manage-partner-categories.php">
+                            <a href="manage-gallery-photos.php">
                                 <i class="material-icons">list</i>
                                 <span>Manage</span>
                             </a>
                         </li>
                         <li>
-                            <a href="arrange-partner-categories.php">
-                                <i class="material-icons">compare_arrows</i>
-                                <span>Arrange</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="">
-                    <a href="javascript:void(0);" class="menu-toggle">
-                        <i class="material-icons">chevron_right</i>
-                        <span>Event Category</span>
-                    </a>
-                    <ul class="ml-menu">
-                        <li>
-                            <a href="create-event-category.php">
-                                <i class="material-icons">add</i>
-                                <span>Add New</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="manage-event-categories.php">
-                                <i class="material-icons">list</i>
-                                <span>Manage</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="arrange-event-categories.php">
+                            <a href="arrange-gallery-photos.php">
                                 <i class="material-icons">compare_arrows</i>
                                 <span>Arrange</span>
                             </a>
@@ -495,7 +417,7 @@
                 <br>
                 <br>
                 <br>
-                <br>  
+                <br>
             </ul>
         </div>
         <!-- #Menu -->

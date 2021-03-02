@@ -1,3 +1,10 @@
+<?php
+include_once(dirname(__FILE__) . '/class/include.php');
+$ABOUT = new Page(1);
+$VISION = new Page(2);
+$MISSION = new Page(3);
+$VALUES = new Page(4);
+?>
 <!doctype html>
 <html>
 
@@ -6,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>About Us || Clean & Green Polymer</title>
+    <title>About Us || Clean & Green Polymers</title>
     <!-- Plugins CSS -->
     <link href="css/plugins.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -82,24 +89,13 @@
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-6">
                     <div class="about-img">
-                        <img src="images/about-img.jpg" class="img-fluid" alt="">
+                        <img src="upload/page/<?= $ABOUT->image_name; ?>" class="img-fluid" alt="">
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-6">
                     <div class="about-txt">
-                        <h3>Work With Our Teams</h3>
-                        <p>Mauris mattis auctor cursus. Phasellus tellus tellus, imperdiet ut imperdiet eu, iaculis a sem. Donec vehicula luctus nunc in laoreet. Aliquam erat volutpat. Suspendisse vulputate porttitor condimentum. Proin viverra orci a leo suscipit placerat. Sed feugiat posuere semper. Cras vitae mi erat</p>
-                        <ul class="list-style-one mt-4">
-                            <li>Computer Repair</li>
-                            <li>Data Recovery</li>
-                            <li>Hardware Update</li>
-                            <li>Electronics Repair</li>
-                            <li>Mac Repair</li>
-                            <li>Efficient Cost</li>
-                            <li>Best Materials</li>
-                            <li>Quality Support</li>
-                        </ul>
-                        <a href="about-us.html" class="btn mt-3">Read More</a>
+                        <h3>Clean & Green Polymer</h3>
+                        <p><?= $ABOUT->description; ?></p>
                     </div>
                 </div>
             </div>
@@ -115,9 +111,9 @@
             <div class="indurance-testimonial-slider1 row">
                 <div class="single-testimonial-slide col-sm-4">
                     <div class="testimonial-item">
-                        <div class="testimonial-content"> <span>Lorem ipsum dolor sit amet, coning ctetur adipisicing elit, sed do it on eiusmod tempor incididunt me ut labore et dolore.</span> </div>
+                        <div class="testimonial-content"> <span><?= $VISION->description; ?></span> </div>
                         <div class="testimonial-author">
-                            <div class="author-image"> <img src="images/testimonials-img1.png" alt=""> </div>
+                            <div class="author-image"> <img src="images/vision.jpg" alt=""> </div>
                             <div class="author-name">
                                 <h6 class="title">Our Vision</h6>
                             </div>
@@ -126,9 +122,9 @@
                 </div>
                 <div class="single-testimonial-slide col-sm-4">
                     <div class="testimonial-item">
-                        <div class="testimonial-content"> <span>Lorem ipsum dolor sit amet, coning ctetur adipisicing elit, sed do it on eiusmod tempor incididunt me ut labore et dolore.</span> </div>
+                        <div class="testimonial-content"> <span><?= $MISSION->description; ?></span> </div>
                         <div class="testimonial-author">
-                            <div class="author-image"> <img src="images/testimonials-img2.png" alt=""> </div>
+                            <div class="author-image"> <img src="images/mission.jpg" alt=""> </div>
                             <div class="author-name">
                                 <h6 class="title">Our Mission</h6>
                             </div>
@@ -137,9 +133,9 @@
                 </div>
                 <div class="single-testimonial-slide col-sm-4">
                     <div class="testimonial-item">
-                        <div class="testimonial-content"> <span>Lorem ipsum dolor sit amet, coning ctetur adipisicing elit, sed do it on eiusmod tempor incididunt me ut labore et dolore.</span> </div>
+                        <div class="testimonial-content"> <span><?= $VALUES->description; ?></span> </div>
                         <div class="testimonial-author">
-                            <div class="author-image"> <img src="images/testimonials-img3.png" alt=""> </div>
+                            <div class="author-image"> <img src="images/value.jpg" alt=""> </div>
                             <div class="author-name">
                                 <h6 class="title">Our Values</h6>
                             </div>

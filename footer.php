@@ -1,3 +1,7 @@
+<?php
+$PRODUCT_CATEGORY = new ProductCategory(NULL);
+$categories = $PRODUCT_CATEGORY->all();
+?>
 <footer class="footer">
     <!-- Footer Top -->
     <div class="footer-top">
@@ -24,7 +28,7 @@
                     </div>
                     <!--/ End Footer About -->
                 </div>
-                <div class="col-lg-2 col-md-6 col-12">
+                <div class="col-lg-3 col-md-6 col-12">
                     <!-- Footer Links -->
                     <div class="single-widget f-link widget">
                         <h3 class="widget-title">Company</h3>
@@ -38,32 +42,27 @@
                     </div>
                     <!--/ End Footer Links -->
                 </div>
-                <div class="col-lg-4 col-md-6 col-12">
+                <div class="col-lg-3 col-md-6 col-12">
                     <!-- Footer News -->
-                    <div class="single-widget footer-news widget">
-                        <h3 class="widget-title">Blog Page</h3>
-                        <!-- Single News -->
-                        <div class="single-f-news">
-                            <div class="post-thumb"><a href="javascript:void(0)"><img src="images/blog-img1.jpg" alt=""></a></div>
-                            <div class="content">
-                                <p class="post-meta">
-                                    <span class="post-date"><i class="fa fa-clock-o"></i>April 15, 2020</span>
-                                </p>
-                                <h4 class="title"><a href="blog-details.html">We Provide you Best &amp; Computor Repair Service</a></h4>
-                            </div>
-                        </div>
-                        <!--/ End Single News -->
-                        <!-- Single News -->
-                        <div class="single-f-news">
-                            <div class="post-thumb"><a href="javascript:void(0)"><img src="images/blog-img2.jpg" alt=""></a></div>
-                            <div class="content">
-                                <p class="post-meta">
-                                    <span class="post-date"><i class="fa fa-clock-o"></i>April 10, 2020</span>
-                                </p>
-                                <h4 class="title"><a href="blog-details.html">We Provide you Best &amp; Mobile Repair Service</a></h4>
-                            </div>
-                        </div>
-                        <!--/ End Single News -->
+                    <div class="single-widget f-link widget">
+                        <h3 class="widget-title">Product Categories</h3>
+                        <ul>
+                            <?php
+                            if (count($categories) > 0) {
+                                foreach ($categories as $key => $category) {
+                                    if ($key < 5) {
+                            ?>
+                                        <li><a href="view-product.php?id=<?= $category['id']; ?>"><?= $category['name']; ?></a></li>
+                                <?php
+                                    }
+                                }
+                            } else {
+                                ?>
+                                <li><a href="#">No any product categories</a></li>
+                            <?php
+                            }
+                            ?>
+                        </ul>
                     </div>
                     <!--/ End Footer News -->
                 </div>

@@ -1,14 +1,22 @@
+<?php
+include_once(dirname(__FILE__) . '/class/include.php');
+$id = '';
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+}
+$PRODUCT_CATEGORY = new ProductCategory($id);
+$PRODUCT = new Product(NULL);
+$products = $PRODUCT->getProductsByCategory($id);
+?>
 <!doctype html>
 <html>
-
-<!-- Mirrored from sbtechnosoft.com/repair4u/blog.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Feb 2021 06:13:09 GMT -->
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Repair4u - Computer & Mobile Repair HTML Template</title>
+    <title>Products || <?= $PRODUCT_CATEGORY->name; ?> || Clean & Green Polymers</title>
     <!-- Plugins CSS -->
     <link href="css/plugins.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -61,7 +69,7 @@
             <div class="row">
                 <div class="col-lg-9 col-md-9">
                     <div class="page-title">
-                        <h1>Blog</h1>
+                        <h1>Products of <?= $PRODUCT_CATEGORY->name; ?></h1>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 d-flex justify-content-start justify-content-md-end align-items-center">
@@ -83,42 +91,32 @@
     <section class="blog-sec inner-content-wrapper">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <!-- Single Blog Sec -->
-                    <div class="single-blog-post">
-                        <div class="post-image"> <a href="javascript:void(0)"> <img src="images/blog-img1.jpg" alt="" title=""> </a> </div>
-                        <div class="post-content">
-                            <div class="date"> <i class="fa fa-calendar"></i> <span>19 Jul 2020</span> </div>
-                            <h3> <a href="view-product.php?id=">Why do we use it?</a> </h3>
-                            <p>Lorem ipsum dolor sit amet csectetur adipiscing elit sed do eiusmod tem incididunt</p>
-                            <a href="view-product.php?id=" class="btn">Read More</a>
+                <?php
+                if (count($products) > 0) {
+                    foreach ($products as $product) {
+                ?>
+                        <div class="col-lg-4 col-md-6">
+                            <!-- Single Product Sec -->
+                            <div class="single-blog-post">
+                                <div class="post-image">
+                                    <a href="view-product.php?id=<?= $product['id']; ?>">
+                                        <img src="upload/product/<?= $product['image_name']; ?>" alt="<?= $product['name']; ?>" title="<?= $product['name']; ?>">
+                                    </a>
+                                </div>
+                                <div class="post-content">
+                                    <div class="date"><span>Rs. <?= number_format($product['price'], 2); ?> </span> </div>
+                                    <h3> <a href="view-product.php?id=<?= $product['id']; ?>"><?= $product['name']; ?></a> </h3>
+                                    <p><?= substr($product['description'], 0, 250) . '...'; ?></p>
+                                    <a href="view-product.php?id=<?= $product['id']; ?>" class="btn">Read More</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <!-- Single Blog Sec -->
-                    <div class="single-blog-post">
-                        <div class="post-image"> <a href="blog-details.html"> <img src="images/blog-img2.jpg" alt="" title=""> </a> </div>
-                        <div class="post-content">
-                            <div class="date"> <i class="fa fa-calendar"></i> <span>19 Jul 2020</span> </div>
-                            <h3> <a href="blog-details.html">What is Lorem Ipsum?</a> </h3>
-                            <p>Lorem ipsum dolor sit amet csectetur adipiscing elit sed do eiusmod tem incididunt</p>
-                            <a href="blog-details.html" class="btn">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <!-- Single Blog Sec -->
-                    <div class="single-blog-post">
-                        <div class="post-image"> <a href="blog-details.html"> <img src="images/blog-img3.jpg" alt="" title=""> </a> </div>
-                        <div class="post-content">
-                            <div class="date"> <i class="fa fa-calendar"></i> <span>19 Jul 2020</span> </div>
-                            <h3> <a href="blog-details.html">Where does it come from?</a> </h3>
-                            <p>Lorem ipsum dolor sit amet csectetur adipiscing elit sed do eiusmod tem incididunt</p>
-                            <a href="blog-details.html" class="btn">Read More</a>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                    }
+                } else {
+                    echo 'No any products.';
+                }
+                ?>
             </div>
         </div>
     </section>

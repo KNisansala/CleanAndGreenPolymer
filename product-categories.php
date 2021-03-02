@@ -1,3 +1,8 @@
+<?php
+include_once(dirname(__FILE__) . '/class/include.php');
+$PRODUCT_CATEGORY = new ProductCategory(NULL);
+$categories = $PRODUCT_CATEGORY->all();
+?>
 <!doctype html>
 <html>
 
@@ -6,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Product Categories || Clean & Green Polymer</title>
+    <title>Product Categories || Clean & Green Polymers</title>
     <!-- Plugins CSS -->
     <link href="css/plugins.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -80,69 +85,28 @@
     <section class="our-team-sec inner-content-wrapper">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <!-- Single Our Team Sec -->
-                    <div class="team">
-                        <div class="team-image">
-                            <img src="images/our-team1.jpg" alt="">
+                <?php
+                if (count($categories) > 0) {
+                    foreach ($categories as $category) {
+                ?>
+                        <div class="col-lg-3 col-md-6">
+                            <!-- Single Our Team Sec -->
+                            <div class="team">
+                                <div class="team-image">
+                                    <img src="upload/product-category/<?= $category['image_name']; ?>" alt="">
+                                </div>
+                                <div class="team-info">
+                                    <h5><a href="products.php?id=<?= $category['id']; ?>"><?= $category['name']; ?></a></h5>
+                                    <span><a href="products.php?id=<?= $category['id']; ?>">View Products</a></span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="team-info">
-                            <h5><a href="products.php?id=">Les Williams</a></h5>
-                            <span><a href="products.php?id=">View Products</a></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <!-- Single Our Team Sec -->
-                    <div class="team">
-                        <div class="team-image"> <img src="images/our-team2.jpg" alt="">
-                            <ul>
-                                <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-google-plus"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="team-info">
-                            <h5><a href="javascript:void(0)">James Rocky</a></h5>
-                            <span>Our Staff</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <!-- Single Our Team Sec -->
-                    <div class="team">
-                        <div class="team-image"> <img src="images/our-team3.jpg" alt="">
-                            <ul>
-                                <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-google-plus"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="team-info">
-                            <h5><a href="javascript:void(0)">John Smith</a></h5>
-                            <span>Our Staff</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <!-- Single Our Team Sec -->
-                    <div class="team">
-                        <div class="team-image"> <img src="images/our-team4.jpg" alt="">
-                            <ul>
-                                <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-google-plus"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="team-info">
-                            <h5><a href="javascript:void(0)">Halim Dawn</a></h5>
-                            <span>Our Staff</span>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                    }
+                } else {
+                    echo 'No any product categories.';
+                }
+                ?>
             </div>
         </div>
     </section>

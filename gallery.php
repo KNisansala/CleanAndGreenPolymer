@@ -1,3 +1,8 @@
+<?php
+include_once(dirname(__FILE__) . '/class/include.php');
+$GALLERY = new Gallery(NULL);
+$photos = $GALLERY->all();
+?>
 <!doctype html>
 <html>
 
@@ -6,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Gallery || Clean & Green Polymer</title>
+    <title>Gallery || Clean & Green Polymers</title>
     <!-- Plugins CSS -->
     <link href="css/plugins.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -80,71 +85,28 @@
     <section class="gallery-area inner-content-wrapper">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-sm-6">
-                    <div class="gallery-box">
-                        <div class="gallery-img"> <img src="images/gallery-img1.jpg" alt="">
-                            <div class="gallery-overlay"> <a href="images/gallery-img1.jpg"><i class="ti-plus"></i></a> </div>
+                <?php
+                if (count($photos) > 0) {
+                    foreach ($photos as $photo) {
+                ?>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="gallery-box">
+                                <div class="gallery-img">
+                                    <img src="upload/gallery/thumb/<?= $photo['image_name']; ?>" alt="<?= $photo['caption']; ?>">
+                                    <div class="gallery-overlay">
+                                        <a href="upload/gallery/<?= $photo['image_name']; ?>"><i class="ti-plus"></i></a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="gallery-box">
-                        <div class="gallery-img"> <img src="images/gallery-img2.jpg" alt="">
-                            <div class="gallery-overlay"> <a href="images/gallery-img2.jpg"><i class="ti-plus"></i></a> </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="gallery-box">
-                        <div class="gallery-img"> <img src="images/gallery-img3.jpg" alt="">
-                            <div class="gallery-overlay"> <a href="images/gallery-img3.jpg"><i class="ti-plus"></i></a> </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="gallery-box">
-                        <div class="gallery-img"> <img src="images/gallery-img4.jpg" alt="">
-                            <div class="gallery-overlay"> <a href="images/gallery-img4.jpg"><i class="ti-plus"></i></a> </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="gallery-box">
-                        <div class="gallery-img"> <img src="images/gallery-img5.jpg" alt="">
-                            <div class="gallery-overlay"> <a href="images/gallery-img5.jpg"><i class="ti-plus"></i></a> </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="gallery-box">
-                        <div class="gallery-img"> <img src="images/gallery-img6.jpg" alt="">
-                            <div class="gallery-overlay"> <a href="images/gallery-img6.jpg"><i class="ti-plus"></i></a> </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="gallery-box">
-                        <div class="gallery-img"> <img src="images/gallery-img7.jpg" alt="">
-                            <div class="gallery-overlay"> <a href="images/gallery-img7.jpg"><i class="ti-plus"></i></a> </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="gallery-box">
-                        <div class="gallery-img"> <img src="images/gallery-img8.jpg" alt="">
-                            <div class="gallery-overlay"> <a href="images/gallery-img8.jpg"><i class="ti-plus"></i></a> </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="gallery-box">
-                        <div class="gallery-img"> <img src="images/gallery-img9.jpg" alt="">
-                            <div class="gallery-overlay"> <a href="images/gallery-img9.jpg"><i class="ti-plus"></i></a> </div>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                    }
+                } else {
+                    echo 'No any photos.';
+                }
+                ?>
             </div>
-            
+
         </div>
     </section>
     <!-- Inner Content Area End -->

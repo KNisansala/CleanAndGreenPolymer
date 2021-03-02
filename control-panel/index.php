@@ -2,14 +2,11 @@
 include_once(dirname(__FILE__) . '/../class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
 
-$COUNT_LISTING_CATEGORIES = count(ListingCategory::all());
 $COUNT_PRODUCT_CATEGORIES = count(ProductCategory::all());
-$COUNT_BLOG_CATEGORIES = count(BlogCategory::all());
-$COUNT_INSTRUCTOR_CATEGORIES = count(InstructorCategory::all());
-$COUNT_LISTINGS = count(Listing::all());
 $COUNT_PRODUCTS = count(Product::all());
-$COUNT_BLOGS = count(Blog::all());
-$COUNT_INSTRUCTORS = count(Instructor::all());
+$COUNT_SERVICES = count(Service::all());
+$COUNT_PHOTOS = count(Gallery::all());
+$COUNT_COMMENTS = count(Comments::all());
 ?>
 <!DOCTYPE html>
 <html>
@@ -75,8 +72,8 @@ $COUNT_INSTRUCTORS = count(Instructor::all());
                                 <i class="material-icons">photo</i>
                             </div>
                             <div class="content">
-                                <div class="text">LOCATIONS</div>
-                                <div class="number count-to" data-from="0" data-to="<?php echo $COUNT_LISTINGS; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                                <div class="text">PRODUCT CATEGORIES</div>
+                                <div class="number count-to" data-from="0" data-to="<?php echo $COUNT_PRODUCT_CATEGORIES; ?>" data-speed="1000" data-fresh-interval="20"></div>
                             </div>
                         </div>
                     </div>
@@ -101,8 +98,8 @@ $COUNT_INSTRUCTORS = count(Instructor::all());
                                 <i class="material-icons">forum</i>
                             </div>
                             <div class="content">
-                                <div class="text">BLOGS</div>
-                                <div class="number count-to" data-from="0" data-to=" <?php echo $COUNT_BLOGS; ?>" data-speed="1500" data-fresh-interval="1"></div>
+                                <div class="text">SERVICES</div>
+                                <div class="number count-to" data-from="0" data-to=" <?php echo $COUNT_SERVICES; ?>" data-speed="1500" data-fresh-interval="1"></div>
 
                             </div>
                         </div>
@@ -115,31 +112,13 @@ $COUNT_INSTRUCTORS = count(Instructor::all());
                                 <i class="material-icons">dvr</i>
                             </div>
                             <div class="content">
-                                <div class="text">PARTNER POSTS</div>
-                                <div class="number count-to" data-from="0" data-to=" <?php echo $COUNT_INSTRUCTORS; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                                <div class="text">GALLERY PHOTOS</div>
+                                <div class="number count-to" data-from="0" data-to=" <?php echo $COUNT_PHOTOS; ?>" data-speed="1000" data-fresh-interval="20"></div>
                             </div>
                         </div>
                     </div>
                 </a>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="card">
-                        <div class="header bg-blue-grey">
-                            <h2>
-                                LOCATION CATEGORIES
-                            </h2>
-                            <ul class="header-dropdown m-r--5">
-                                <div class="number count-to" data-from="0" data-to=" <?php echo $COUNT_LISTING_CATEGORIES; ?>" data-speed="1500" data-fresh-interval="1"></div>
-                            </ul>
-                        </div>
-                        <div class="body">
-                            <div class="list-group">
-                                <a href="create-listing-category.php"><button type="button" class="list-group-item">Add new</button></a>
-                                <a href="manage-listing-categories.php"><button type="button" class="list-group-item">Manage</button></a>
-                                <a href="arrange-listing-categories.php"><button type="button" class="list-group-item">Arrange</button></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="card">
                         <div class="header bg-blue-grey">
@@ -164,18 +143,17 @@ $COUNT_INSTRUCTORS = count(Instructor::all());
                     <div class="card">
                         <div class="header bg-blue-grey">
                             <h2>
-                                BLOG CATEGORIES
-                                <!--                                    <small></small>-->
+                                SERVICES
                             </h2>
                             <ul class="header-dropdown m-r--5">
-                                <div class="number count-to" data-from="0" data-to=" <?php echo $COUNT_BLOG_CATEGORIES; ?>" data-speed="1500" data-fresh-interval="1"></div>
+                                <div class="number count-to" data-from="0" data-to=" <?php echo $COUNT_SERVICES; ?>" data-speed="1500" data-fresh-interval="1"></div>
                             </ul>
                         </div>
                         <div class="body">
                             <div class="list-group">
-                                <a href="create-blog-category.php"><button type="button" class="list-group-item">Add new</button></a>
-                                <a href="manage-blog-categories.php"><button type="button" class="list-group-item">Manage</button></a>
-                                <a href="arrange-blog-categories.php"><button type="button" class="list-group-item">Arrange</button></a>
+                                <a href="create-service.php"><button type="button" class="list-group-item">Add new</button></a>
+                                <a href="manage-services.php"><button type="button" class="list-group-item">Manage</button></a>
+                                <a href="arrange-services.php"><button type="button" class="list-group-item">Arrange</button></a>
                             </div>
                         </div>
                     </div>
@@ -184,18 +162,38 @@ $COUNT_INSTRUCTORS = count(Instructor::all());
                     <div class="card">
                         <div class="header bg-blue-grey">
                             <h2>
-                                PARTNERS
+                                GALLERY PHOTOS
+                                <!--                                    <small></small>-->
                             </h2>
                             <ul class="header-dropdown m-r--5">
-                                <div class="number count-to" data-from="0" data-to=" <?php echo $COUNT_INSTRUCTOR_CATEGORIES; ?>" data-speed="1500" data-fresh-interval="1"></div>
+                                <div class="number count-to" data-from="0" data-to=" <?php echo $COUNT_PHOTOS; ?>" data-speed="1500" data-fresh-interval="1"></div>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div class="list-group">
+                                <a href="create-gallery-photo.php"><button type="button" class="list-group-item">Add new</button></a>
+                                <a href="manage-gallery-photos.php"><button type="button" class="list-group-item">Manage</button></a>
+                                <a href="arrange-gallery-photos.php"><button type="button" class="list-group-item">Arrange</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="card">
+                        <div class="header bg-blue-grey">
+                            <h2>
+                                CUSTOMER FEEDBACK
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <div class="number count-to" data-from="0" data-to=" <?php echo $COUNT_COMMENTS; ?>" data-speed="1500" data-fresh-interval="1"></div>
                             </ul>
                         </div>
                         <div class="body">
 
                             <div class="list-group">
-                                <a href="create-instructor-category.php"><button type="button" class="list-group-item">Add new</button></a>
-                                <a href="manage-instructor-categories.php"><button type="button" class="list-group-item">Manage</button></a>
-                                <a href="arrange-instructor-categories.php"><button type="button" class="list-group-item">Arrange</button></a>
+                                <a href="create-comment.php"><button type="button" class="list-group-item">Add new</button></a>
+                                <a href="manage-comments.php"><button type="button" class="list-group-item">Manage</button></a>
+                                <a href="arrange-comments.php"><button type="button" class="list-group-item">Arrange</button></a>
 
                             </div>
                         </div>

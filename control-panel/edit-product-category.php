@@ -70,7 +70,17 @@ $PRODUCT_CATEGORY = new ProductCategory($id);
                                     </div>
                                 </div>
                                 <div class="col-md-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="file" class="form-control" value="<?php echo $PRODUCT_CATEGORY->imageName; ?>" name="image">
+                                            <input type="hidden" id="image" class="form-control" value="<?php echo $PRODUCT_CATEGORY->imageName; ?>" name="image">
+                                            <img src="../upload/product-category/<?php echo $PRODUCT_CATEGORY->imageName; ?>" id="image" class="img img-responsive img-thumbnail" name="image" alt="old image">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
                                     <input type="hidden" value="update" name="update" />
+                                    <input type="hidden" id="oldImageName" value="<?php echo $PRODUCT_CATEGORY->imageName; ?>" name="oldImageName" />
                                     <input type="hidden" id="id" value="<?php echo $PRODUCT_CATEGORY->id; ?>" name="id" />
                                     <button type="submit" class="btn btn-primary m-t-15 waves-effect" id="update" value="update">Save Changes</button>
                                 </div>

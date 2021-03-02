@@ -1,3 +1,13 @@
+<?php
+include_once(dirname(__FILE__) . '/class/include.php');
+$SERVICE = new Service(NULL);
+$PRODUCT_CATEGORY = new ProductCategory(NULL);
+$COMMENT = new Comments(NULL);
+$services = $SERVICE->all();
+$categories = $PRODUCT_CATEGORY->all();
+$comments = $COMMENT->all();
+$ABOUT = new Page(1);
+?>
 <!doctype html>
 <html>
 
@@ -6,7 +16,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Clean & Green Polymer</title>
+    <title>Clean & Green Polymers</title>
     <!-- Plugins CSS -->
     <link href="css/plugins.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -97,24 +107,14 @@
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-6">
                     <div class="about-img">
-                        <img src="images/about-img.jpg" class="img-fluid" alt="">
+                        <img src="upload/page/<?= $ABOUT->image_name; ?>" class="img-fluid" alt="">
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-6">
                     <div class="about-txt">
-                        <h3>Work With Our Teams</h3>
-                        <p>Mauris mattis auctor cursus. Phasellus tellus tellus, imperdiet ut imperdiet eu, iaculis a sem. Donec vehicula luctus nunc in laoreet. Aliquam erat volutpat. Suspendisse vulputate porttitor condimentum. Proin viverra orci a leo suscipit placerat. Sed feugiat posuere semper. Cras vitae mi erat</p>
-                        <ul class="list-style-one mt-4">
-                            <li>Computer Repair</li>
-                            <li>Data Recovery</li>
-                            <li>Hardware Update</li>
-                            <li>Electronics Repair</li>
-                            <li>Mac Repair</li>
-                            <li>Efficient Cost</li>
-                            <li>Best Materials</li>
-                            <li>Quality Support</li>
-                        </ul>
-                        <a href="about-us.html" class="btn mt-3">Read More</a>
+                        <h3>Who We Are?</h3>
+                        <p><?= substr($ABOUT->description, 0, 800) . '...'; ?></p>
+                        <a href="about-us.php" class="btn mt-3">Read More</a>
                     </div>
                 </div>
             </div>
@@ -142,68 +142,33 @@
                 <h2>Our <span>Services</span></h2>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <!-- Single Service Sec -->
-                    <div class="single-services-sec">
-                        <a href="view-service.php?id=">
-                            <div class="services-icon"> <i class="flaticon-computer"></i> </div>
-                            <div class="single-services-content">
-                                <h5>Computer Repair</h5>
-                                <p>Lorem ipsum dolor sit amet, ipsum consectetur adipisicing elit, sed do eiusmod tempor inc ididunt ut.</p>
+                <?php
+                if (count($services) > 0) {
+                    foreach ($services as $key => $service) {
+                        if ($key < 3) {
+                ?>
+                            <div class="col-lg-4 col-md-6">
+                                <!-- Single Product Sec -->
+                                <div class="single-blog-post">
+                                    <div class="post-image">
+                                        <a href="view-service.php?id=<?= $service['id']; ?>">
+                                            <img src="upload/service/<?= $service['image_name']; ?>" alt="<?= $service['title']; ?>" title="<?= $service['title']; ?>">
+                                        </a>
+                                    </div>
+                                    <div class="post-content">
+                                        <h3> <a href="view-service.php?id=<?= $service['id']; ?>"><?= $service['title']; ?></a> </h3>
+                                        <p><?= substr($service['description'], 0, 250) . '...'; ?></p>
+                                        <a href="view-service.php?id=<?= $service['id']; ?>" class="btn">Read More</a>
+                                    </div>
+                                </div>
                             </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <!-- Single Service Sec -->
-                    <div class="single-services-sec">
-                        <div class="services-icon"> <i class="flaticon-mac-mini"></i> </div>
-                        <div class="single-services-content">
-                            <h5>Data Recovery</h5>
-                            <p>Lorem ipsum dolor sit amet, ipsum consectetur adipisicing elit, sed do eiusmod tempor inc ididunt ut.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <!-- Single Service Sec -->
-                    <div class="single-services-sec">
-                        <div class="services-icon"> <i class="flaticon-apple"></i> </div>
-                        <div class="single-services-content">
-                            <h5>Hardware Update</h5>
-                            <p>Lorem ipsum dolor sit amet, ipsum consectetur adipisicing elit, sed do eiusmod tempor inc ididunt ut.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <!-- Single Service Sec -->
-                    <div class="single-services-sec">
-                        <div class="services-icon"> <i class="flaticon-data"></i> </div>
-                        <div class="single-services-content">
-                            <h5>Electronics Repair</h5>
-                            <p>Lorem ipsum dolor sit amet, ipsum consectetur adipisicing elit, sed do eiusmod tempor inc ididunt ut.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <!-- Single Service Sec -->
-                    <div class="single-services-sec">
-                        <div class="services-icon"> <i class="flaticon-technical-support"></i> </div>
-                        <div class="single-services-content">
-                            <h5>Mac Repair</h5>
-                            <p>Lorem ipsum dolor sit amet, ipsum consectetur adipisicing elit, sed do eiusmod tempor inc ididunt ut.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <!-- Single Service Sec -->
-                    <div class="single-services-sec">
-                        <div class="services-icon"> <i class="flaticon-tools"></i> </div>
-                        <div class="single-services-content">
-                            <h5>Quality Support</h5>
-                            <p>Lorem ipsum dolor sit amet, ipsum consectetur adipisicing elit, sed do eiusmod tempor inc ididunt ut.</p>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                        }
+                    }
+                } else {
+                    echo 'No any services.';
+                }
+                ?>
             </div>
         </div>
     </section>
@@ -215,51 +180,30 @@
                 <h2>Product <span>Categories</span></h2>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <!-- Single Our Team Sec -->
-                    <div class="team">
-                        <div class="team-image">
-                            <img src="images/our-team1.jpg" alt="">
-                        </div>
-                        <div class="team-info">
-                            <h5><a href="#">Les Williams</a></h5>
-                            <span><a href="#">View Products</a></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <!-- Single Our Team Sec -->
-                    <div class="team">
-                        <div class="team-image"> <img src="images/our-team2.jpg" alt="">
-                        </div>
-                        <div class="team-info">
-                            <h5><a href="javascript:void(0)">James Rocky</a></h5>
-                            <span>Our Staff</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <!-- Single Our Team Sec -->
-                    <div class="team">
-                        <div class="team-image"> <img src="images/our-team3.jpg" alt="">
-                        </div>
-                        <div class="team-info">
-                            <h5><a href="javascript:void(0)">John Smith</a></h5>
-                            <span>Our Staff</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <!-- Single Our Team Sec -->
-                    <div class="team">
-                        <div class="team-image"> <img src="images/our-team4.jpg" alt="">
-                        </div>
-                        <div class="team-info">
-                            <h5><a href="javascript:void(0)">Halim Dawn</a></h5>
-                            <span>Our Staff</span>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                if (count($categories) > 0) {
+                    foreach ($categories as $key => $category) {
+                        if ($key < 4) {
+                ?>
+                            <div class="col-lg-3 col-md-6">
+                                <!-- Single Our Team Sec -->
+                                <div class="team">
+                                    <div class="team-image">
+                                        <img src="upload/product-category/<?= $category['image_name']; ?>" alt="">
+                                    </div>
+                                    <div class="team-info">
+                                        <h5><a href="products.php?id=<?= $category['id']; ?>"><?= $category['name']; ?></a></h5>
+                                        <span><a href="products.php?id=<?= $category['id']; ?>">View Products</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                <?php
+                        }
+                    }
+                } else {
+                    echo 'No any product categories.';
+                }
+                ?>
             </div>
         </div>
     </section>
@@ -271,54 +215,28 @@
                 <h2>Client <span>Testimonials</span></h2>
             </div>
             <div class="indurance-testimonial-slider">
-                <div class="single-testimonial-slide">
-                    <div class="testimonial-item">
-                        <div class="testimonial-content"> <span>Lorem ipsum dolor sit amet, coning ctetur adipisicing elit, sed do it on eiusmod tempor incididunt me ut labore et dolore.</span> </div>
-                        <div class="testimonial-author">
-                            <div class="author-image"> <img src="images/testimonials-img1.png" alt=""> </div>
-                            <div class="author-name">
-                                <h6 class="title">Les Williams</h6>
-                                <span>CEO</span>
+                <?php
+                if (count($comments) > 0) {
+                    foreach ($comments as $comment) {
+                ?>
+                        <div class="single-testimonial-slide">
+                            <div class="testimonial-item">
+                                <div class="testimonial-content"> <span><?= $comment['comment']; ?></span> </div>
+                                <div class="testimonial-author">
+                                    <div class="author-image"> <img src="upload/comments/<?= $comment['image_name']; ?>" alt=""> </div>
+                                    <div class="author-name">
+                                        <h6 class="title"><?= $comment['name']; ?></h6>
+                                        <span><?= $comment['title']; ?></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="single-testimonial-slide">
-                    <div class="testimonial-item">
-                        <div class="testimonial-content"> <span>Lorem ipsum dolor sit amet, coning ctetur adipisicing elit, sed do it on eiusmod tempor incididunt me ut labore et dolore.</span> </div>
-                        <div class="testimonial-author">
-                            <div class="author-image"> <img src="images/testimonials-img2.png" alt=""> </div>
-                            <div class="author-name">
-                                <h6 class="title">Jessica Jeni</h6>
-                                <span>CEO</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-testimonial-slide">
-                    <div class="testimonial-item">
-                        <div class="testimonial-content"> <span>Lorem ipsum dolor sit amet, coning ctetur adipisicing elit, sed do it on eiusmod tempor incididunt me ut labore et dolore.</span> </div>
-                        <div class="testimonial-author">
-                            <div class="author-image"> <img src="images/testimonials-img3.png" alt=""> </div>
-                            <div class="author-name">
-                                <h6 class="title">Jeni Blake</h6>
-                                <span>CEO</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-testimonial-slide">
-                    <div class="testimonial-item">
-                        <div class="testimonial-content"> <span>Lorem ipsum dolor sit amet, coning ctetur adipisicing elit, sed do it on eiusmod tempor incididunt me ut labore et dolore.</span> </div>
-                        <div class="testimonial-author">
-                            <div class="author-image"> <img src="images/testimonials-img2.png" alt=""> </div>
-                            <div class="author-name">
-                                <h6 class="title">Halim Dawn</h6>
-                                <span>CEO</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                    }
+                } else {
+                    echo 'No any customer feedbacks.';
+                }
+                ?>
             </div>
         </div>
     </section>

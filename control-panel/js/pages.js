@@ -130,7 +130,7 @@ $(document).ready(function () {
                         showConfirmButton: false
                     }, function () {
                         setTimeout(function () {
-                            window.location.replace("edit-pages.php?id=" + result.id);
+                            location.reload();
                         }, 1500);
                     });
                 },

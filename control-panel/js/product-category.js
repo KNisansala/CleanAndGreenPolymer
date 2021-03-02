@@ -15,12 +15,12 @@ $(document).ready(function () {
                 timer: 1500,
                 showConfirmButton: false
             });
-        } else if ($('#name').val().includes("'")) {
+        } else if (!$('#image').val() || $('#image').val().length === 0) {
             swal({
                 title: "Error!",
-                text: "Sorry, Invalid character found ( ' ) in title. Please remove that character.",
+                text: "Please select image..!",
                 type: 'error',
-                timer: 3500,
+                timer: 1500,
                 showConfirmButton: false
             });
         } else {
@@ -70,12 +70,12 @@ $(document).ready(function () {
                 timer: 1500,
                 showConfirmButton: false
             });
-        } else if ($('#name').val().includes("'")) {
+        } else if (!$('#image').val() || $('#image').val().length === 0) {
             swal({
                 title: "Error!",
-                text: "Sorry, Invalid character found ( ' ) in title. Please remove that character.",
+                text: "Please select image..!",
                 type: 'error',
-                timer: 3500,
+                timer: 1500,
                 showConfirmButton: false
             });
         } else {

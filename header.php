@@ -2,10 +2,10 @@
     <div class="top-bar d-none d-md-block pt-15 pb-15">
         <div class="container">
             <div class="row d-flex align-items-center">
-                <div class="col-xl-8 col-lg-9 col-md-12">
-                    <div class="header-info"> <span class="header-address"><i class="fa fa-map-marker-alt"></i> 158 Main road, San Francisco</span> <span class="header-phone"><i class="fas fa-phone"></i> +1 012 589 9780</span> <span class="header-email"><i class="fas fa-envelope"></i> info@example.com</span> </div>
+                <div class="col-xl-9 col-lg-9 col-md-12">
+                    <div class="header-info"> <span class="header-address"><i class="fa fa-map-marker-alt"></i> No. 55, Isipathanarama Rd, Maharagama.</span> <span class="header-phone"><i class="fas fa-phone"></i> +(94) 11 366 3500</span> <span class="header-email"><i class="fas fa-envelope"></i> info@cleanandgreen.com</span> </div>
                 </div>
-                <div class="col-xl-4 col-lg-3 col-md-5 d-none d-lg-block">
+                <div class="col-xl-3 col-lg-3 col-md-5 d-none d-lg-block">
                     <div class="header-social-icons header-social-icons-black float-right">
                         <ul>
                             <li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a></li>
